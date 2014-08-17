@@ -1,0 +1,78 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// @mixin prefix
+//
+// example use: @include prefix(border-radius, webkit moz, 4px);
+//
+// inspiration: https://github.com/thoughtbot/bourbon
+// ---------------------------------------------------------------------------------------------------------------------
+
+@mixin prefix($property, $prefixes, $value...) {
+  @each $pre in $prefixes {
+	@if $pre == webkit {
+	  -webkit-#{$property}: $value;
+	}
+	@else if $pre == moz {
+	  -moz-#{$property}: $value;
+	}
+	@else if $pre == ms {
+	  -ms-#{$property}: $value;
+	}
+	@else if $pre == o {
+	  -o-#{$property}: $value;
+	}
+	@else if $pre == spec {
+	  #{$property}: $value;
+	}
+	@else  {
+	  @warn "Unrecognized prefix: #{$pre}";
+	}
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// @mixin prefixer
+//
+// example use: @include prefixer(border-radius, 4px);
+// ---------------------------------------------------------------------------------------------------------------------
+
+@mixin prefixer($property, $value...) {
+  @if $property == border-radius {
+	@include prefix($property, webkit spec, $value);
+  }
+  @else if $property == box-sizing {
+	@include prefix($property, webkit moz spec, $value);
+  }
+  @else if $property == box-shadow {
+	@include prefix($property, webkit spec, $value);
+  }
+  @else if $property == background-size {
+	@include prefix($property, webkit moz o spec, $value);
+  }
+  @else if $property == transition {
+	@include prefix($property, webkit moz o spec, $value);
+  }
+  @else if $property == animation {
+	@include prefix($property, webkit moz o spec, $value);
+  }
+  @else if $property == column-count {
+	@include prefix($property, webkit moz spec, $value);
+  }
+  @else if $property == column-width {
+	@include prefix($property, webkit moz spec, $value);
+  }
+  @else if $property == column-gap {
+	@include prefix($property, webkit moz spec, $value);
+  }
+  @else if $property == transform {
+	@include prefix($property, webkit moz ms o spec, $value);
+  }
+  @else {
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	-o-#{$property}: $value;
+	#{$property}: $value;
+  }
+}
+
