@@ -37,23 +37,11 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 @mixin prefixer($property, $value...) {
-  @if $property == border-radius {
+  @if $property == transition {
 	@include prefix($property, webkit spec, $value);
-  }
-  @else if $property == box-sizing {
-	@include prefix($property, webkit moz spec, $value);
-  }
-  @else if $property == box-shadow {
-	@include prefix($property, webkit spec, $value);
-  }
-  @else if $property == background-size {
-	@include prefix($property, webkit moz o spec, $value);
-  }
-  @else if $property == transition {
-	@include prefix($property, webkit moz o spec, $value);
   }
   @else if $property == animation {
-	@include prefix($property, webkit moz o spec, $value);
+	@include prefix($property, webkit spec, $value);
   }
   @else if $property == column-count {
 	@include prefix($property, webkit moz spec, $value);
@@ -65,13 +53,9 @@
 	@include prefix($property, webkit moz spec, $value);
   }
   @else if $property == transform {
-	@include prefix($property, webkit moz ms o spec, $value);
+	@include prefix($property, webkit ms spec, $value);
   }
   @else {
-	-webkit-#{$property}: $value;
-	-moz-#{$property}: $value;
-	-ms-#{$property}: $value;
-	-o-#{$property}: $value;
 	#{$property}: $value;
   }
 }

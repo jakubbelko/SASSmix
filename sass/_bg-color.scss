@@ -1,0 +1,27 @@
+// @mixin bg-color -----------------------------------------------------------------------------------------------------
+//
+// color background with automatic RGBa fallback for IE8 settings and alpha channel
+//
+// example:	@include bg-color(rgba(0, 0, 0, 0.75), 0.9);
+// result:
+//		background-color: #000000;
+//		background-color: rgba(0, 0, 0, 0.75);
+// ---------------------------------------------------------------------------------------------------------------------
+
+@mixin bg-color($color, $set-alpha: false) {
+  @if $set-alpha {
+	$color: change_color($color, $alpha: $set-alpha);
+  }
+
+  $alpha: alpha($color);
+  @if $alpha < 1 {
+	$color-rgb: change_color($color, $alpha: 1);
+	background-color: $color-rgb;
+
+	$color-ie: ie-hex-str($color);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-ie}', endColorstr='#{$color-ie}', GradientType=0);
+	ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-ie}', endColorstr='#{$color-ie}', GradientType=0);
+  }
+
+  background-color: $color;
+}

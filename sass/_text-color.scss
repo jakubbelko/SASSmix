@@ -1,0 +1,23 @@
+// @mixin text-color ---------------------------------------------------------------------------------------------------
+//
+// text color with automatic RGBa fallback for IE8 settings and alpha channel
+//
+// example:	@include text-color(rgba(0, 0, 0, 0.75), 0.9);
+// result:
+//		color: #000000;
+//		color: rgba(0, 0, 0, 0.75);
+// ---------------------------------------------------------------------------------------------------------------------
+
+@mixin text-color($color, $set-alpha: false) {
+  @if $set-alpha {
+	$color: change_color($color, $alpha: $set-alpha);
+  }
+
+  $alpha: alpha($color);
+  @if $alpha < 1 {
+	$color-rgb: change_color($color, $alpha: 1);
+	color: $color-rgb;
+  }
+
+  color: $color;
+}
