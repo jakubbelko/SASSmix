@@ -19,7 +19,6 @@
 	background-color: $color-rgb;
 
 	$color-ie: ie-hex-str($color);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-ie}', endColorstr='#{$color-ie}', GradientType=0);
 	ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-ie}', endColorstr='#{$color-ie}', GradientType=0);
   }
 
