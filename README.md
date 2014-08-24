@@ -1,7 +1,7 @@
 sass-mixins
 ===========
 
-My best SASS/SCSS mixins
+Library SASS mixin that I use as the basis of all coded pages and templates.
 
 @mixin clearfix
 ---------------
